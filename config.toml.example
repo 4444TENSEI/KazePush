@@ -1,0 +1,25 @@
+# 服务端配置
+[server]
+# 监听端口号
+port = 7788
+# 需使用密钥鉴权的接口的url token
+paramToken = "123456"
+
+# SMTP 邮件服务配置
+[smtp]
+# 发件人显示名称
+senderName = "KazePush"
+# 发件邮箱地址
+senderEmail = "xxx@xx.com"
+# 邮箱服务密码/授权码
+senderPassword = "xxxxxxxxx"
+# SMTP 服务器地址
+smtpServer = "smtp.xxx.com"
+# SMTP 端口
+smtpPort = 465
+
+# 发送频率限制器配置
+[rate]
+# 限制接口请求速率（定义一段时间内的最大请求次数）
+duration = "60s"
+maxRequest = 1

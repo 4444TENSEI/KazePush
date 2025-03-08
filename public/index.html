@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KazePush</title>
+    <link rel="icon" href="/_/assets/img/favicon.svg" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <p class="home_title">
+                KazePush
+                <a type="button" onclick="window.open('https://github.com/4444TENSEI/KazePush', '_blank')">⭐</a>
+            </p>
+            <button type="button" class="send_btn" id="sendEmailButton">测试smtp邮件服务</button>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    document.getElementById('sendEmailButton').addEventListener('click', async () => {
+        const inputEmail = prompt("请输入收件邮箱（不能和服务端配置的发件人相同）");
+        if (!inputEmail) return;
+        try {
+            const response = await fetch('/send/email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ to: [inputEmail] })
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || '操作失败');
+            }
+            alert(data.message);
+        } catch (err) {
+            alert(`操作失败: ${err.message}`);
+            console.error('操作失败:', err);
+        }
+    });
+</script>
+
+<style>
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: rgb(160, 200, 240);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        background-color: rgba(58, 58, 58, 0.5);
+        padding: 3rem;
+        border-radius: 3rem;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+
+    .home_title {
+        font-size: 50rem;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        margin: 0 0 1.5rem 0;
+        font-size: 40px;
+        text-shadow: 0px 0px 20px rgb(107, 135, 162), 0px 0px 40px rgb(160, 200, 240), 0px 0px 60px rgb(193, 180, 240);
+    }
+
+    .send_btn {
+        scale: 1.6;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .home_title {
+            font-size: 2.4rem;
+        }
+    }
+</style>
