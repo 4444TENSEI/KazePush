@@ -5,23 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KazePush</title>
-    <link rel="icon" href="/_/assets/img/favicon.svg" type="image/png">
+    <link rel="icon" href="/_/assets/img/favicon.svg">
 </head>
 
 <body>
     <div class="container">
         <div class="card">
-            <p class="home_title">
-                KazePush
-                <a type="button" onclick="window.open('https://github.com/4444TENSEI/KazePush', '_blank')">⭐</a>
-            </p>
-            <button type="button" class="send_btn" id="sendEmailButton">测试smtp邮件服务</button>
+            <div class="title_box">
+                <p class="home_title">
+                    KazePush
+                </p>
+                <a type="button" class="github_star"
+                    onclick="window.open('https://github.com/4444TENSEI/KazePush', '_blank')">⭐</a>
+            </div>
+            <a type="button" class="test_btn" id="sendEmailButton">测试smtp邮件服务</a>
         </div>
     </div>
 </body>
 
 </html>
-
 <script>
     document.getElementById('sendEmailButton').addEventListener('click', async () => {
         const inputEmail = prompt("请输入收件邮箱（不能和服务端配置的发件人相同）");
@@ -45,7 +47,6 @@
         }
     });
 </script>
-
 <style>
     html,
     body {
@@ -53,7 +54,7 @@
         width: 100%;
         padding: 0;
         margin: 0;
-        background-color: rgb(160, 200, 240);
+        background-color: rgb(200, 220, 240);
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -68,9 +69,12 @@
     }
 
     .card {
-        background-color: rgba(58, 58, 58, 0.5);
+        font-size: 4rem;
+        margin: 1rem;
         padding: 3rem;
         border-radius: 3rem;
+        font-weight: bold;
+        background-color: rgba(58, 58, 58, 0.5);
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         display: flex;
@@ -80,25 +84,57 @@
         flex-direction: column;
     }
 
+    .title_box {
+        display: flex;
+        cursor: pointer;
+        margin-bottom: 1.5rem;
+        align-items: center;
+        justify-content: center;
+    }
 
     .home_title {
-        font-size: 50rem;
         color: rgb(255, 255, 255);
-        font-weight: bold;
-        margin: 0 0 1.5rem 0;
-        font-size: 40px;
+        margin: 0;
+        cursor: default;
         text-shadow: 0px 0px 20px rgb(107, 135, 162), 0px 0px 40px rgb(160, 200, 240), 0px 0px 60px rgb(193, 180, 240);
     }
 
-    .send_btn {
-        scale: 1.6;
+    .github_star {
         margin: 0;
+        animation: jelly 2s ease-in-out infinite;
+    }
+
+    @keyframes jelly {
+        0% {
+            transform: scale(0.8);
+        }
+
+        50% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(0.8);
+        }
+    }
+
+    .test_btn {
+        padding: 1rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 1rem;
+        background-color: rgb(53, 118, 176);
+        color: rgb(255, 255, 255);
         cursor: pointer;
     }
 
     @media (max-width: 768px) {
-        .home_title {
+        .card {
             font-size: 2.4rem;
+            padding: 2rem;
+        }
+        .title_box{
+            margin-bottom: 1rem;
         }
     }
 </style>
